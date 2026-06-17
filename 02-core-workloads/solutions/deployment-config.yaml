@@ -1,0 +1,45 @@
+# Exercise 2.3 — a Deployment that consumes BOTH the ConfigMap (as a file)
+# and the Secret (as environment variables).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-config-app
+  labels:
+    app: hello-config-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-config-app
+  template:
+    metadata:
+      labels:
+        app: hello-config-app
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.27-alpine
+          ports:
+            - containerPort: 80
+          # --- Secret injected as environment variables ---
+          env:
+            - name: APP_ENV
+              valueFrom:
+                secretKeyRef:
+                  name: hello-secret
+                  key: APP_ENV
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: hello-secret
+                  key: API_KEY
+          # (Shortcut: envFrom + secretRef pulls ALL keys at once — see hints.)
+          # --- ConfigMap mounted as files ---
+          volumeMounts:
+            - name: html
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: html
+          configMap:
+            name: hello-config
+            # each key in the ConfigMap (index.html) becomes a file here

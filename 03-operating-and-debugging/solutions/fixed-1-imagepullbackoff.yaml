@@ -1,0 +1,22 @@
+# FIXED — the image tag is corrected to a real one.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: broken-pull
+  labels:
+    app: broken-pull
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: broken-pull
+  template:
+    metadata:
+      labels:
+        app: broken-pull
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.27-alpine   # fixed: valid tag, the image pulls
+          ports:
+            - containerPort: 80

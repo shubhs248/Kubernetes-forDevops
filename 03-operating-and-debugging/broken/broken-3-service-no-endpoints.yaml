@@ -1,0 +1,35 @@
+# BROKEN ON PURPOSE — the Pods are healthy but the Service has NO endpoints.
+# Diagnose with: kubectl get endpoints web   (it will be empty)
+# Then fix it. The fixed version is in ../solutions/fixed-3-service-no-endpoints.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  labels:
+    app: web-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-frontend
+  template:
+    metadata:
+      labels:
+        app: web-frontend        # <-- the Pods are labelled app=web-frontend
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.27-alpine
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+spec:
+  selector:
+    app: webfrontend             # <-- BUG: missing hyphen, matches NO Pods
+  ports:
+    - port: 80
+      targetPort: 80

@@ -1,0 +1,24 @@
+# BROKEN ON PURPOSE — produces ImagePullBackOff.
+# Diagnose with: kubectl describe pod <name>  (read the Events)
+# Then fix it. The fixed version is in ../solutions/fixed-1-imagepullbackoff.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: broken-pull
+  labels:
+    app: broken-pull
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: broken-pull
+  template:
+    metadata:
+      labels:
+        app: broken-pull
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.27-alpinnne   # <-- typo in the tag: no such image exists
+          ports:
+            - containerPort: 80

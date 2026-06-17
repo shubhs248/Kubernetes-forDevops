@@ -1,0 +1,13 @@
+# Exercise 2.1, Part A — a bare Pod (for learning only; use a Deployment in real life)
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod
+  labels:
+    app: hello
+spec:
+  containers:
+    - name: web
+      image: nginx:1.27-alpine
+      ports:
+        - containerPort: 80

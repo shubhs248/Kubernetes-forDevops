@@ -1,0 +1,28 @@
+# FIXED — the container now runs a long-lived foreground process, so it stays up.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: broken-crash
+  labels:
+    app: broken-crash
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: broken-crash
+  template:
+    metadata:
+      labels:
+        app: broken-crash
+    spec:
+      containers:
+        - name: app
+          image: busybox:1.36
+          # A process that does NOT exit -> the container stays Running.
+          command: ["sh", "-c"]
+          args:
+            - |
+              echo "starting up..."
+              echo "config OK, serving forever"
+              # keep the main process alive in the foreground
+              while true; do sleep 3600; done

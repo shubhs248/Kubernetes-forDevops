@@ -1,0 +1,13 @@
+# Exercise 2.2 — a Service that load-balances to the hello Pods
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello
+spec:
+  selector:
+    app: hello            # finds every Pod with label app=hello
+  ports:
+    - port: 80            # the port clients call on the Service
+      targetPort: 80      # the container port traffic is forwarded to
+  # type: ClusterIP is the default (internal-only). Reach it with:
+  #   kubectl port-forward svc/hello 8080:80
