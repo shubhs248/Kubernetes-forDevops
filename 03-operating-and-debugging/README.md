@@ -1,5 +1,9 @@
 # Part 3 — Operating & Debugging
 
+*The probe lifecycle — startup gates, readiness controls traffic, liveness restarts:*
+
+<picture><source media="(prefers-color-scheme: dark)" srcset="../docs/03-probes-dark.png"><img alt="Probe lifecycle" src="../docs/03-probes.png"></picture>
+
 ## 🎯 Goal
 Run a deployed app like you would on the job: **scale** it, **roll out** a new version (and **roll back** a bad one), give it **health probes**, and — the part that really matters — **diagnose and fix Pods that are broken**. This section is where interviews are won.
 

@@ -1,5 +1,9 @@
 # Part 1 — Kubernetes Basics (Warm-up)
 
+*The cluster: a control plane that decides, worker nodes that run your Pods:*
+
+<picture><source media="(prefers-color-scheme: dark)" srcset="../docs/04-cluster-architecture-dark.png"><img alt="Kubernetes cluster architecture" src="../docs/04-cluster-architecture.png"></picture>
+
 ## 🎯 Goal
 Build the mental model and the `kubectl` muscle memory you need for everything else. By the end you'll be able to *look at any cluster and understand what's going on*.
 

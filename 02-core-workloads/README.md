@@ -1,5 +1,13 @@
 # Part 2 — Core Workloads
 
+*Deployment → ReplicaSet → Pods — the chain that keeps your app running:*
+
+<picture><source media="(prefers-color-scheme: dark)" srcset="../docs/01-deployment-hierarchy-dark.png"><img alt="Deployment hierarchy" src="../docs/01-deployment-hierarchy.png"></picture>
+
+*A Service gives a stable address and routes to Pods by label:*
+
+<picture><source media="(prefers-color-scheme: dark)" srcset="../docs/02-service-routing-dark.png"><img alt="Service routing" src="../docs/02-service-routing.png"></picture>
+
 ## 🎯 Goal
 Write the manifests you'll use 90% of the time **by hand**, from a spec — a Pod, a Deployment, a Service, a ConfigMap, and a Secret. Writing YAML from scratch (not copy-pasting) is exactly what gets tested in interviews.
 
