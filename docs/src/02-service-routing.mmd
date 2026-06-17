@@ -1,0 +1,9 @@
+flowchart LR
+    client([Client]) --> svc[Service<br/>stable IP + selector]
+    svc --> p1[Pod app=web]
+    svc --> p2[Pod app=web]
+    svc --> p3[Pod app=web]
+
+    class client client
+    class svc edge
+    class p1,p2,p3 app

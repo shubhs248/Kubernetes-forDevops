@@ -1,0 +1,11 @@
+flowchart TB
+    d[Deployment<br/>desired state] --> rs[ReplicaSet<br/>keeps N pods]
+    rs --> p1[Pod]
+    rs --> p2[Pod]
+    rs --> p3[Pod]
+    p1 --> ct[container]
+
+    class d client
+    class rs edge
+    class p1,p2,p3 app
+    class ct data

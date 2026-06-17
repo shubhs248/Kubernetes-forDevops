@@ -1,0 +1,18 @@
+flowchart TB
+    user([kubectl]) --> api
+    subgraph cp[Control plane]
+      api[API server] --> etcd[(etcd store)]
+      sched[Scheduler] --> api
+      cm[Controller manager] --> api
+    end
+    subgraph nodes[Worker nodes]
+      k1[kubelet] --> pods1[Pods]
+      k2[kubelet] --> pods2[Pods]
+    end
+    api --> k1
+    api --> k2
+
+    class user client
+    class api,sched,cm,k1,k2 edge
+    class etcd data
+    class pods1,pods2 app

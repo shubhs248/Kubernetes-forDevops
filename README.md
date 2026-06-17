@@ -24,6 +24,22 @@ Kubernetes is a **desired-state** system. You don't tell it "start this containe
 
 Almost everything else in this lab is a variation of that single idea. Keep it in your head.
 
+## 🗺️ Visual overview
+
+A few pictures before the practice. Full set (light + dark, ready for slides/LinkedIn) is in the [diagram gallery](docs/README.md).
+
+**Deployment → ReplicaSet → Pods** — the controller chain that keeps your app running.
+
+<picture><source media="(prefers-color-scheme: dark)" srcset="docs/01-deployment-hierarchy-dark.png"><img alt="Deployment hierarchy" src="docs/01-deployment-hierarchy.png"></picture>
+
+**Service routing**, the **probe lifecycle**, and **cluster architecture**.
+
+<picture><source media="(prefers-color-scheme: dark)" srcset="docs/02-service-routing-dark.png"><img alt="Service routing" src="docs/02-service-routing.png"></picture>
+
+<picture><source media="(prefers-color-scheme: dark)" srcset="docs/03-probes-dark.png"><img alt="Probe lifecycle" src="docs/03-probes.png"></picture>
+
+<picture><source media="(prefers-color-scheme: dark)" srcset="docs/04-cluster-architecture-dark.png"><img alt="Kubernetes cluster architecture" src="docs/04-cluster-architecture.png"></picture>
+
 ## 🗂️ What's inside
 
 ```

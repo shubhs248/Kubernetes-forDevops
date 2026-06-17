@@ -1,0 +1,14 @@
+flowchart TB
+    start([Pod starts]) --> startup{startup probe<br/>started?}
+    startup -->|no| startup
+    startup -->|yes| ready{readiness probe<br/>ready for traffic?}
+    ready -->|no| noTraffic[removed from Service]
+    ready -->|yes| traffic[receives traffic]
+    traffic --> live{liveness probe<br/>still healthy?}
+    live -->|no| restart[kubelet restarts container]
+    live -->|yes| traffic
+
+    class start client
+    class startup,ready,live edge
+    class traffic,noTraffic app
+    class restart queue
